@@ -15,11 +15,11 @@ class MatchingEngine:
     def inject_update(self, symbol, update):
         pass
     
-    def inject_new_order(self, symbol, id, order):
+    def on_new_order(self, symbol, id, order):
         pass
     
-    def inject_modify_order(self, symbol, id, order):
+    def on_modify_order(self, symbol, id, order):
         pass
     
-    def inject_cancel_order(self, symbol, id):
+    def on_cancel_order(self, symbol, id):
         pass

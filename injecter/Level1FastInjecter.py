@@ -17,7 +17,7 @@ class Level1FastInjecter():
         data = pd.read_csv(self.filename, sep = ';')
         for i in range(len(data)):
             row = data.ix[i] 
-            logging.info(1, "injecting row: %s" % row)     
+            self.services.logger.info("injecting row: %s" % row)     
             
             self.services.bus.inject_snapshot(self.symbol, row)
             self.services.events['SnapshotInject'].emit(self.symbol)

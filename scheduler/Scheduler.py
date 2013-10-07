@@ -11,8 +11,8 @@ from injecter.Level1FastInjecter import Level1FastInjecter
 from bus.Bus import Bus
 from agent.DummyAgent import DummyAgent
 from events.signals import Events
-from tools.Order import *
-import logging
+from tools.Logger import *
+from objects.Order import *
 
 
 if __name__ == "__main__":
@@ -23,6 +23,7 @@ if __name__ == "__main__":
     services.injecter = Level1FastInjecter(services, "G:/st_sim/simulator/input_files/data.csv")
     services.events = Events
     services.order_dispatcher = OrderDispatcher(services)
+    services.logger = get_logger()
     
     dummy = DummyAgent(services)
     
@@ -39,6 +40,7 @@ if __name__ == "__main__":
     # connect the injecter to the scheduler events
     Events['Start'].connect(services.injecter.main_loop)
     
+    services.logger.info("starting the simulation")
     services.events["Start"].emit("simulation")
     
     
