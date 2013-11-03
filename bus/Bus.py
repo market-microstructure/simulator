@@ -20,7 +20,8 @@ class Bus(object):
         
         self._last_execution = {}
 
-    
+        self._indicators = {}
+        
     def __setitem__(self, key, value):
         self.data[key] = value
     
@@ -29,6 +30,12 @@ class Bus(object):
     
     def get_orderbook(self):
         return self._private_data
+    
+    def get_executions(self):
+        return self._last_execution
+    
+    def get_indicators(self):
+        return self._indicators
 
     def inject_snapshot(self, symbol, snapshot):
         self._public_data_update[symbol] = snapshot
@@ -38,7 +45,9 @@ class Bus(object):
         self._private_data_update[order.id] = order
 
     def push_public_update(self, symbol):
-        self._public_data[symbol] =  self._public_data_update[symbol]
+        if not self._public_data.has_key(symbol):
+            self._public_data[symbol] = {}
+        self._public_data[symbol].update(self._public_data_update[symbol])
         del self._public_data_update[symbol]
         
     def push_private_update(self, id):

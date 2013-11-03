@@ -22,25 +22,6 @@ class Level1MatchingEngine(MatchingEngine):
         
         # add rejection logic here if needed
         self.services.events['AckNew'].emit(id)
-        
-        # immediate execution logic
-        executions = self.services.rulebook.match(id = id)
-        if executions:
-            # push execution in the bus
-            self.services.bus._last_execution[id] = executions
-            
-            # update the order
-            for e in executions:                
-                self.services.bus.get_orderbook()[id].leaves -= e.size
-                self.services.bus.get_orderbook()[id].executed += e.size
-                if self.services.bus.get_orderbook()[id].leaves <= 0:
-                    del self.services.bus.get_orderbook()[id]
-                    break
-                
-            self.services.events['Execution'].emit(id)
-            
-        
-            
     
     def inject_modify_order(self, symbol, id, order):
         pass

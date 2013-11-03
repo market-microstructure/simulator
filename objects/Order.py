@@ -11,7 +11,7 @@ class Order:
         self.size  = 0
         self.price = 0
         self.symbol = ""
-        self.leaves = self.size
+        self.leaves = "unset"
         self.timeinforce = ""
         self.id = ""
         self.executed = 0
