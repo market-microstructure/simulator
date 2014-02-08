@@ -20,7 +20,7 @@ class SORAgent():
         self.services.logger.info("Sending Order Now:")
         o = Order()
         o.side = 1 if str(self.parameters["side"]).lower() == "buy" else -1
-        o.price = max(self.parameters["price"], data["Euronext"]["ask-1"]["price"])
+        o.price = self.parameters["price"]
         o.size = self.parameters["size"]
         o.leaves = o.size
         o.symbol = "Euronext"

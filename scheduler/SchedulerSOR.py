@@ -8,7 +8,8 @@ from SORSimulation import SORSimulation
 from agent.SORAgent import SORAgent
 
 if __name__ == "__main__":
-    sim = SORSimulation({"agent": SORAgent, "agent-parameters": {'size': 5000, 'price': 102, 'side': 'buy', 'id': 'my_sor_agent_001'}})
+    parameters = {"agent": SORAgent, "agent-parameters": {"side": "Sell", "size": 150, "price": 100, "id": "my_agent_01"}}
+    sim = SORSimulation(parameters)
     sim.run()
     df = sim.get_results()
     print df
