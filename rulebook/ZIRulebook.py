@@ -35,9 +35,18 @@ class ZIRulebook():
                     e.symbol = order.symbol
                     e.id = o.id    
                     e.parent = o.parent
-                    self.services.bus._last_execution[o.id] = []                
-                    self.services.bus._last_execution[o.id].append(e)
-                    self.services.events['Execution'].emit(o.id)
+                    
+                    o.leaves -= e.size
+                    o.executed += e.size
+                    
+                    id = o.id
+                    if o.leaves <= 0:
+                        self.services.logger.debug("Order %s fully filled. Removing from market" % o)
+                        del o
+                    
+                    self.services.bus._last_execution[id] = []                
+                    self.services.bus._last_execution[id].append(e)
+                    self.services.events['Execution'].emit(id)
                     
                     order.leaves -= e.size
                     order.executed += e.size
