@@ -4,7 +4,7 @@ Created on Feb 8, 2014
 @author: Silver
 '''
 from datetime import datetime
-
+from pandas import DataFrame
 class ZIBus(object):
     '''
     classdocs
@@ -22,7 +22,7 @@ class ZIBus(object):
         
         self._new_order = None
 
-        self._indicators = {}
+        self._indicators = DataFrame()
         
     def __setitem__(self, key, value):
         self.data[key] = value

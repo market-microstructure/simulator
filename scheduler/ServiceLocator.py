@@ -13,4 +13,5 @@ class ServiceLocator():
         self.injecter = []
         self.events = []
         self.order_dispatcher = []
+        self.simulation = {}
         

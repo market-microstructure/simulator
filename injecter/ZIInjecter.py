@@ -6,9 +6,8 @@ import logging
 
 class ZIInjecter():
     def __init__(self, service_locator, filename):
-        self.services = service_locator
-        self.filename = filename
-        self.symbol = "a"
+        self.services = service_locator        
+        self.symbol = "Euronext"
      
     def main_loop(self, parameter):
         self.services.events['SnapshotInject'].emit(self.symbol)

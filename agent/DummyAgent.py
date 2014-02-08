@@ -7,9 +7,9 @@ Created on Sep 23, 2013
 from objects.Order import *
 
 class DummyAgent():
-    def __init__(self, service_locator):
+    def __init__(self, service_locator, params):
         self.services = service_locator
-        self.x = 0
+        self.parameters = params
     
     def process(self, symbol):        
         data = self.services.bus.get_market_data()        
