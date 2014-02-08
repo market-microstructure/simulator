@@ -80,6 +80,6 @@ class SORSimulation(Simulation):
         self.services.logger.info("Duration of simulation. Start: %s. End: %s. Duration: %s" % (start, end, end-start))
         
     def get_results(self):
-        df = pd.read_csv(self.services.simulation["output-path"]+"/"+self.services.simulation["id"] + ".csv")
+        df = pd.read_csv(self.services.simulation["output-path"]+"/"+self.services.simulation["id"] + ".csv", sep = ';')
         return df
         
