@@ -19,6 +19,7 @@ class Bus(object):
         self._private_data_update = {}
         
         self._last_execution = {}
+        self._last_reject = {}
 
         self._indicators = {}
         
