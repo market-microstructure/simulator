@@ -8,13 +8,15 @@ from utils.generate_snapshots_SOR import generate_snapshot
 
 class ZeroIntelligenceAgent:
     def __init__(self, service_locator, params):
-        self.services = service_locator        
-        self.orderbooks = generate_snapshot(1, 0)
+        self.services = service_locator
         self.parameters = params
+                
+        self.orderbooks = generate_snapshot(self.parameters["nb_lit_venues"], self.parameters["nb_dark_venues"])        
         if not self.parameters.has_key("id"):
             self.parameters["id"] = "ZeroIntelligenceAgent"
         
         self.sent_orders = False
+        self.my_orders = []
             
     def process(self, symbol):
         if not self.sent_orders:
@@ -23,6 +25,7 @@ class ZeroIntelligenceAgent:
                 for price in self.orderbooks[venue]:
                     for o in self.orderbooks[venue][price]:
                         o.parent = self.parameters["id"]
+                        self.my_orders.append(o.id)
                         self.services.order_dispatcher.new_order(o)
     
     def process_report(self, order_id):

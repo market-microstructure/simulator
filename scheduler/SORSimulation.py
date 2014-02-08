@@ -40,7 +40,7 @@ class SORSimulation(Simulation):
         self.services.factory = AgentFactory(self.services)
         
         
-        zi = ZeroIntelligenceAgent(self.services, {"id": "ZIAgent"})
+        zi = ZeroIntelligenceAgent(self.services, {"id": "ZIAgent", "nb_lit_venues": 4, "nb_dark_venues": 0})
         if parameters.has_key("agent"):
             Agent = parameters["agent"]
             params = parameters["agent-parameters"] if parameters.has_key("agent-parameters") else {"id": "DefaultAgent"}            
